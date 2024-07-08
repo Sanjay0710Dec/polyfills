@@ -52,3 +52,7 @@ console.log(person01.__proto__) // verify 34th line and this line
 
 
 
+
+
+
+
