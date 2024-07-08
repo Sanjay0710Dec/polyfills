@@ -11,7 +11,7 @@ const person02 = {
     username:"nothing"
 }
 
-Function.prototype.myapply = function(thisArg,arr){
+Function.prototype.myapply = function(thisArg,arr=[]){
 
     if(typeof(thisArg) !== 'object'){
         throw new Error('myapply expects object as first argument but got '+typeof(thisArg))
