@@ -14,9 +14,6 @@ const person02 = {
 // bind under the hood uses call method.
 Function.prototype.myBind = function(thisArg,...argsArray){
        const func = this;
-    if(typeof(thisArg) !== 'object'){
-        throw new Error('myBind expects object as first argument but got ',typeof(thisArg));
-    }
 
     return function(...args){
          func.call(thisArg,...argsArray,...args);
