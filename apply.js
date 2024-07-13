@@ -1,34 +1,55 @@
-const person01 = {
-    username:'something',
-    printUser:function(a,b){
-        console.log(a,b);
-        console.log(this)
-        console.log(this.username);
+const obj = {
+    x:22,
+    even:function(n){
+        console.log("the this is " ,this);
+        console.log(n);
     }
 }
-
-const person02 = {
-    username:"nothing"
+const obj2 = {
+    x:100
 }
 
 Function.prototype.myapply = function(thisArg,arr=[]){
 
-    if(typeof(thisArg) !== 'object'){
-        throw new Error('myapply expects object as first argument but got '+typeof(thisArg))
-    }
+   
    if(!Array.isArray(arr)){
     
-    throw new Error('myapply expects array as second argument but got '+typeof(arr))
-   }
+        throw new TypeError("CreateListFromArrayLike called on non-object")
+     }
 
-   Object.prototype.callBack = this;
-
-   thisArg.callBack(...arr);
-
-   delete Object.prototype.callBack;
+   if(thisArg === undefined || thisArg === null){
+                this(...arr)
+      }
+     else{
+        Object.prototype.callBack = this;
+        thisArg.callBack(...arr);
+        delete Object.prototype.callBack        
+    }
    
 
 }
 
-person01.printUser.myapply(person02,[100,200])
-person01.printUser.apply(person02,[100,200])
+// TestCases For myapply
+
+obj.even.myapply(undefined,[99]);
+obj.even.myapply(null,[99])
+obj.even.myapply(100,[99]);
+obj.even.myapply(true,[99]);
+obj.even.myapply("nothing",[99]);
+obj.even.myapply(obj2,[99]);
+obj.even.myapply(function(){
+    console.log("something")
+},[99])
+
+// TestCases For in-built apply
+
+obj.even.apply(undefined,[99]);
+obj.even.apply(null,[99])
+obj.even.apply(100,[99]);
+obj.even.apply(true,[99]);
+obj.even.apply("nothing",[99]);
+obj.even.apply(obj2,[99]);
+
+obj.even.apply(function(){
+    console.log("something")
+},[99]);
