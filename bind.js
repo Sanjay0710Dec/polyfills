@@ -16,7 +16,7 @@ Function.prototype.myBind = function(thisArg,...argsArray){
        const func = this;
 
     return function(...args){
-         func.call(thisArg,...argsArray,...args);
+         return func.call(thisArg,...argsArray,...args);
     }
 }
 

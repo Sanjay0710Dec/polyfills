@@ -16,18 +16,21 @@ Function.prototype.myapply = function(thisArg,arr=[]){
     
         throw new TypeError("CreateListFromArrayLike called on non-object")
      }
+     let callbackAnswer;
 
    if(thisArg === undefined || thisArg === null){
-                this(...arr)
+              callbackAnswer =   this(...arr)
       }
      else{
         Object.prototype.callBack = this;
-        thisArg.callBack(...arr);
+        callbackAnswer = thisArg.callBack(...arr);
         delete Object.prototype.callBack        
     }
+    return callbackAnswer;
    
 
 }
+
 
 // TestCases For myapply
 
