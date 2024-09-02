@@ -7,7 +7,9 @@
 function memoize(fn,thisArg){ 
 const  cacheObj = {};
 
-
+if(typeof(fn)  !== 'function'){
+    throw TypeError('First argument to memoize should be callback function');
+}
     return function(...args){
        
         const cacheKey = JSON.stringify(args);
@@ -40,7 +42,7 @@ const result = sum(1,2,3);
 const result2 = sum(1,2,3); // cached value will be returned.
 
 
-const product = memoize(function(a,b){return a*b});  // called without thisArg.
+const product = memoize("snajay");  // called without thisArg.
 const result3 = product(10,20);
 const result4 = product(10,20);
 
